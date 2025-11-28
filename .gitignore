@@ -26,3 +26,4 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 flow7_analytic_server-*.tar
 
+docker-compose.yaml
