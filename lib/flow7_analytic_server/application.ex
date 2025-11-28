@@ -9,11 +9,9 @@ defmodule Flow7AnalyticServer.Application do
   def start(_type, _args) do
     children = [
       Flow7AnalyticServerWeb.Telemetry,
-      Flow7AnalyticServer.Repo,
       {DNSCluster, query: Application.get_env(:flow7_analytic_server, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Flow7AnalyticServer.PubSub},
-      # Start the Finch HTTP client for sending emails
-      {Finch, name: Flow7AnalyticServer.Finch},
+      Flow7AnalyticServer.ClickHouse,
       # Start a worker by calling: Flow7AnalyticServer.Worker.start_link(arg)
       # {Flow7AnalyticServer.Worker, arg},
       # Start to serve requests, typically the last entry

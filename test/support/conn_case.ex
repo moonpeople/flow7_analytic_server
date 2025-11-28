@@ -31,8 +31,7 @@ defmodule Flow7AnalyticServerWeb.ConnCase do
     end
   end
 
-  setup tags do
-    Flow7AnalyticServer.DataCase.setup_sandbox(tags)
+  setup _tags do
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

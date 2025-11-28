@@ -7,7 +7,7 @@ defmodule Flow7AnalyticServerWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_flow7_analytic_server_key",
-    signing_salt: "aqlvNoBh",
+    signing_salt: "Mn0RVngZ",
     same_site: "Lax"
   ]
 
@@ -29,7 +29,6 @@ defmodule Flow7AnalyticServerWeb.Endpoint do
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :flow7_analytic_server
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,

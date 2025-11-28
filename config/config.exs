@@ -8,8 +8,18 @@
 import Config
 
 config :flow7_analytic_server,
-  ecto_repos: [Flow7AnalyticServer.Repo],
   generators: [timestamp_type: :utc_datetime]
+
+config :flow7_analytic_server, :ch,
+  scheme: "http",
+  hostname: "178.154.220.66",
+  port: 8123,
+  database: "welder_production",
+  username: "default",
+  password: "unicode",
+  settings: [],
+  pool_size: 1,
+  timeout: :timer.seconds(15)
 
 # Configures the endpoint
 config :flow7_analytic_server, Flow7AnalyticServerWeb.Endpoint,
@@ -20,16 +30,7 @@ config :flow7_analytic_server, Flow7AnalyticServerWeb.Endpoint,
     layout: false
   ],
   pubsub_server: Flow7AnalyticServer.PubSub,
-  live_view: [signing_salt: "ryOGS5IK"]
-
-# Configures the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-config :flow7_analytic_server, Flow7AnalyticServer.Mailer, adapter: Swoosh.Adapters.Local
+  live_view: [signing_salt: "re3Yco9i"]
 
 # Configures Elixir's Logger
 config :logger, :console,

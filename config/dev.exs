@@ -1,15 +1,5 @@
 import Config
 
-# Configure your database
-config :flow7_analytic_server, Flow7AnalyticServer.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "flow7_analytic_server_dev",
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
-
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -23,7 +13,7 @@ config :flow7_analytic_server, Flow7AnalyticServerWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "WZpqaoUTVWZBhuRknUtzB8W24cT0qtRM2VxDyl9BMmJzikXO/ACH1DCTdvC9Cz0p",
+  secret_key_base: "o4qpIJiVoo7055QwWUad530F8p85gHY7+65DRkm+VH0J2yj9Co4MAN7jz/lKqOTC",
   watchers: []
 
 # ## SSL Support
@@ -61,6 +51,3 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
-
-# Disable swoosh api client as it is only required for production adapters.
-config :swoosh, :api_client, false
