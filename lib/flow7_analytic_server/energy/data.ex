@@ -11,10 +11,10 @@ defmodule Flow7AnalyticServer.EnergyData do
           {:ok, from} <- Utils.to_datetime_utc(sdp),
           {:ok, to} <- Utils.to_datetime_utc(fdp),
           true <- is_integer(device) do
-            Flow7AnalyticServer.Energy.Queries.get_data_by_period_query(device, from, to, Utils.interval_to_seconds(interval))
+            Flow7AnalyticServer.Energy.Queries.get_data_by_period_query(device, from, to, Utils.interval_to_seconds(interval), sdp.time_zone)
             |> case do
               {:ok, result} -> {:ok, process_data(result.rows)}
-              _ -> {:error, "Database Error"}
+              result -> {:error, result}
             end
           else
             _ -> {:error, "Error in query parameters"}

@@ -8,10 +8,10 @@ defmodule Flow7AnalyticServerWeb.Router do
   scope "/api", Flow7AnalyticServerWeb do
     pipe_through :api
     # MILK
-    get "/milk/get_device_cycles", MilkController, :get_device_cycles
+    post "/milk/get_device_cycles", MilkController, :get_device_cycles
 
     # ENERGY
-    get "/energy/get_device_data", EnergyController, :get_device_data
+    post "/energy/get_device_data", EnergyController, :get_device_data
   end
 
   # Enable LiveDashboard in development

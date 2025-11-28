@@ -43,6 +43,8 @@ defmodule Flow7AnalyticServerWeb.Endpoint do
     pass: ["*/*"],
     json_decoder: Phoenix.json_library()
 
+  plug Plug.RewriteOn, [:x_forwarded_proto, :x_forwarded_host, :x_forwarded_port]
+
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options

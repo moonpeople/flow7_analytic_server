@@ -13,7 +13,8 @@ defmodule Flow7AnalyticServer.MilkData do
           {:ok, from} <- Utils.to_datetime_utc(sdp),
           {:ok, to} <- Utils.to_datetime_utc(fdp),
           true <- is_integer(device) do
-            Flow7AnalyticServer.Milk.Queries.get_cycles_query(device, from, to)
+            dbg({sdp, fdp, from, to})
+            Flow7AnalyticServer.Milk.Queries.get_cycles_query(device, from, to, sdp.time_zone)
             |> case do
               {:ok, result} -> {:ok, process_data(result)}
               _ -> {:error, "Database Error"}

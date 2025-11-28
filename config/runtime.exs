@@ -46,9 +46,23 @@ if config_env() == :prod do
       # See the documentation on https://hexdocs.pm/bandit/Bandit.html#t:options/0
       # for details about using IPv6 vs IPv4 and loopback vs public addresses.
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
-      port: port
+      port: port,
     ],
+    server: true,   # <- обязательно включить
+    render_errors: [formats: [json: Flow7AnalyticServerWeb.ErrorJSON]],
     secret_key_base: secret_key_base
+
+
+  config :flow7_analytic_server, :ch,
+    scheme: "http",
+    hostname: System.get_env("CLICKHOUSE_HOST", "localhost"),
+    port: String.to_integer(System.get_env("CLICKHOUSE_PORT", "8123")),
+    database: System.get_env("CLICKHOUSE_DB", "default"),
+    username: System.get_env("CLICKHOUSE_USER", "default"),
+    password: System.get_env("CLICKHOUSE_PASSWORD", ""),
+    settings: [],
+    pool_size: String.to_integer(System.get_env("CLICKHOUSE_POOL", "2")),
+    timeout: :timer.seconds(15)
 
   # ## SSL Support
   #

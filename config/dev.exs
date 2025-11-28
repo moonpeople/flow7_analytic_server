@@ -51,3 +51,14 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :flow7_analytic_server, :ch,
+  scheme: "http",
+  hostname: "178.154.220.66",
+  port: 8123,
+  database: "welder_production",
+  username: "default",
+  password: "unicode",
+  settings: [],
+  pool_size: 1,
+  timeout: :timer.seconds(15)

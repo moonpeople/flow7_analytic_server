@@ -10,17 +10,6 @@ import Config
 config :flow7_analytic_server,
   generators: [timestamp_type: :utc_datetime]
 
-config :flow7_analytic_server, :ch,
-  scheme: "http",
-  hostname: "178.154.220.66",
-  port: 8123,
-  database: "welder_production",
-  username: "default",
-  password: "unicode",
-  settings: [],
-  pool_size: 1,
-  timeout: :timer.seconds(15)
-
 # Configures the endpoint
 config :flow7_analytic_server, Flow7AnalyticServerWeb.Endpoint,
   url: [host: "localhost"],

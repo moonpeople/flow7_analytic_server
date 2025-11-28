@@ -5,13 +5,14 @@ defmodule Flow7AnalyticServer.Milk.Queries do
 
   # @dataKeyId 144
 
-  def get_cycles_query(device, start, finish) do
+  def get_cycles_query(device, start, finish, time_zone) do
     ClickHouse.query(
       """
         WITH
           now() as now_time,
           {start:DateTime} as from_datetime,
           {finish:DateTime} as to_datetime,
+          {timeZone:String} as time_zone,
           1 as capacity,
           {device:Integer} as input_device_id,
 
@@ -62,8 +63,8 @@ defmodule Flow7AnalyticServer.Milk.Queries do
 
           SELECT
               session_id + 1 as cycle,
-              minIf(at, value > 0)                      AS start_time,
-              maxIf(at, value > 0)                      AS stop_time,
+              minIf(toDateTime(at, time_zone), value > 0)                      AS start_time,
+              maxIf(toDateTime(at, time_zone), value > 0)                      AS stop_time,
               dateDiff('second', start_time, stop_time) AS duration,
               sum(value) / 1000000                      AS total
           FROM sessions
@@ -74,7 +75,8 @@ defmodule Flow7AnalyticServer.Milk.Queries do
       %{
         start: start,
         finish: finish,
-        device: device
+        device: device,
+        timeZone: time_zone
       }
     )
   end
